@@ -1,5 +1,7 @@
 import { User } from '../models/user.model.js';
 import { generateTokenAndSetCookie } from '../utils/generateToken.js';
+import  bcryptjs  from "bcryptjs";
+
 
 export async function signup(req,res){
    try {
@@ -31,13 +33,15 @@ export async function signup(req,res){
     if(existingByUsername){
         return res.status(400).json({success:false,message:"Username Already Exists"})
     }
+    const salt =await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, salt);
 
     const PROFILE_PICS = ["/avatar1.png","/avatar2.jpg","/avatar3.png"];
-    const image=PROFILE_PICS[Math.floor(Math.random()*PROFILE_PICS.length)];
+    const image=PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
 
     const newUser = new User({
         email,
-        password,hashedPassword,
+        password:hashedPassword,
         username,
         image,
     });
@@ -74,7 +78,7 @@ export async function login(req,res){
      }
      const user =await User.findOne({email:email})
      if(!user){
-        return res.status(404).json({success:false,message:"invalid ecredentials"});
+        return res.status(404).json({success:false,message:"invalid credentials"});
      }
      const ispasswordCorrect=await bcryptjs.compare(password,user.password);
      if (!ispasswordCorrect) {
@@ -97,7 +101,7 @@ export async function login(req,res){
 
 export async function logout(req,res){
    try {
-    res.clearcookie("jwt-netflix");
+    res.clearCookie("jwt-netflix");
     res.status(200).json({success:true,message:"logged out succesfully"});
      
    } catch (error) {
