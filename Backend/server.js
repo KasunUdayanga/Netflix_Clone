@@ -1,4 +1,5 @@
 import express from "express";
+import cookiesParser from " cookies-parser";
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js"; 
@@ -14,10 +15,11 @@ const app = express();
 const PORT=ENV_VARS.PORT;
 
 app.use(express.json());
+app.use(cookiesParser());
 
 app.use("/api/v1/auth",authRoutes);
-app.use("/api/v1/movie",movieRoutes);
-app.use("/api/v1/movie",tvRoutes);
+app.use("/api/v1/movie",protectRoute,movieRoutes);
+app.use("/api/v1/movie",protectRoute,tvRoutes);
 
 
 app.listen(PORT,()=>{
