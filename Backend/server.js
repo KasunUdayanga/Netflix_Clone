@@ -1,6 +1,6 @@
 import express from "express";
-import cookiesParser from " cookies-parser";
-
+import cookiesParser from "cookie-parser";
+import {protectRoute} from "./middleware/protectRoute.js";
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js"; 
 import tvRoutes from "./routes/tv.route.js"; 
