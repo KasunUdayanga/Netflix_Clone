@@ -6,10 +6,10 @@ export async function searchPerson(req, res) {
     const{query}=req.params;
     try {
         const response =await fetchFromTMDB(
-            ' https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&Language=en=Us&page=1'
+            `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&Language=en=Us&page=1`
         );
 
-        if(response.results.length == 0){
+        if(response.results.length === 0){
             return res.status(404).send(null);
         }
 
@@ -17,7 +17,7 @@ export async function searchPerson(req, res) {
             $push:{
                 searchHistory:{
                     id:response.results[0].id,
-                    Image:response[0].profile_path,
+                    Image:response.results[0].profile_path,
                     title:response.results[0].name, 
                     searchType:"person",
                     createAt:new Date(), 
@@ -29,7 +29,7 @@ export async function searchPerson(req, res) {
 
     }catch (error) {
         console.log("Error in searchPerson controller: ",error.message);
-        res.status(500).json({ success: false, message: "Internaml server Error" });
+        res.status(500).json({ success: false, message: "Internal server Error" });
 
     }
 }
@@ -38,9 +38,9 @@ export async function searchMovie(req, res) {
 
     try{
         const response =await fetchFromTMDB(
-            ' https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&Language=en=Us&page=1'
+            `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`
         );
-        if(response.results.length == 0){
+        if(response.results.length === 0){
             return res.status(404).send(null);
         }
 
@@ -48,7 +48,7 @@ export async function searchMovie(req, res) {
             $push:{
                 searchHistory:{
                     id:response.results[0].id,
-                    Image:response[0].poster_path,
+                    Image:response.results[0].poster_path,
                     title:response.results[0].title, 
                     searchType:"movie",
                     createAt:new Date(), 
@@ -59,14 +59,15 @@ export async function searchMovie(req, res) {
 
     }catch(error) {
         console.log("Error in searchMovie controller: ",error.message);
-        res.status(500).json({ success: false, message: "Internaml server Error" }); 
+        res.status(500).json({ success: false, message: "Internal server Error" }); 
 
     }
 }
 export async function searchTv(req, res) {
+    const { query } =req.params;
     try {
         const response =await fetchFromTMDB(
-            ' https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&Language=en=Us&page=1'
+            `https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1`
         );
         if (response.results.length === 0){
             return res.status(404).send(null);
@@ -76,23 +77,23 @@ export async function searchTv(req, res) {
             $push:{
                 searchHistory:{
                     id:response.results[0].id,
-                    Image:response[0].poster_path,
-                    title:response.results[0].title, 
+                    Image:response.results[0].poster_path,
+                    title:response.results[0].name, 
                     searchType:"tv",
                     createAt:new Date(), 
                 },
             },
         });
-        res.json({ success: true, content:response.result});
+        res.status(200).json({ success:true,content: response.results});
     } catch (error) {
         console.log("Error in searchTv controller: ",error.message);
-        res.status(500).json({ success: false, message: "Internaml server Error" }); 
+        res.status(500).json({ success: false, message: "Internal server Error" }); 
     }
 }
 
 export async function getSearchHistory(req, res) {
     try {
-        res.status(200).json({success: true, content: req.user.searchHistory });
+        res.status(200).json({success: true,content: req.user._id });
 
     } catch (error) {
         res.status(500).json({success: false,message: "Internal Server Error"});
@@ -112,8 +113,7 @@ export async function removeItemFromSearchHistory(req, res) {
         });
         res.status(200).json({ success: true, message: "Item Removed from search history"});
     } catch (error) {
-        console.log("Error in removeItemFromsearchHistory controller: ",error.message);
+        console.log("Error in removeItem FromsearchHistory controller: ",error.message);
         res.status(500).json({ succes: false, message: "Internal Server Error" });
-        
     }
 }
