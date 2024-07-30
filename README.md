@@ -32,6 +32,7 @@ This project is a clone of the popular streaming service Netflix. The web app is
   - Heroku (Backend)
 
 ## Installation
+##Contributors
 
 1. **Clone the repository:**
 
