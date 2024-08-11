@@ -24,8 +24,6 @@ This project is a clone of the popular streaming service Netflix. The web app is
 - **Database:**
   - MongoDB
 
-- **Authentication:**
-  - Firebase Auth
 
 - **Deployment:**
   - Vercel (Frontend)
