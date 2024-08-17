@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
-import { authCheck, login, logout } from "../../../Backend/controllers/auth.controllers";
+//import { authCheck, login, logout } from "../../../Backend/controllers/auth.controllers";
 
 export const useAuthStore = create((set) => ({
     user: null,

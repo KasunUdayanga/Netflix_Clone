@@ -5,6 +5,7 @@ import SignUpPage from './pages/SignUpPage.jsx';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authUser.js';
 import { Loader } from "lucide-react";
+import { useEffect } from 'react';
 
 
 function App() {
