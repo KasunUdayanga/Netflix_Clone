@@ -50,6 +50,7 @@ export const useAuthStore = create((set) => ({
 			set({ user: response.data.user, isCheckingAuth: false });
 		} catch (error) {
 			set({ isCheckingAuth: false, user: null });
+			toast.error(error.response.message || "No token found");
 			
 		}
 	},

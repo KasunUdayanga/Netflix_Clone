@@ -6,8 +6,9 @@ import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authUser.js';
 import { Loader } from "lucide-react";
 import { useEffect } from 'react';
+import Footer from './components/Footer.jsx';
 
-
+ 
 function App() {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
     <Route path="/login" element={!user ?<LoginPage/> : <Navigate to={"/"} />} />
     <Route path="/signup" element={!user ? <SignUpPage/> : <Navigate to={"/"} />} />
   </Routes>
+  <Footer/>
   <Toaster />
   </>
 );
