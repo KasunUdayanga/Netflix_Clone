@@ -29,7 +29,7 @@ const Navbar = () => {
 					</Link>
 					<Link to='/history' className='hover:underline'>
 						Search History
-					</Link>
+					</Link> 
 				</div>
 			</div>
 
