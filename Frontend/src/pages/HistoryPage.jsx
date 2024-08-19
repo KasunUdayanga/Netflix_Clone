@@ -27,7 +27,8 @@ const HistoryPage = () => {
     const getSearchHistory = async () => {
       try {
         const res = await axios.get(`/api/v1/search/history`);
-        setSearchHistory(res.data.content);
+        console.log(res.data.content);
+        setSearchHistory(Array.isArray(res.data.content) ? res.data.content : []);
       } catch (error) {
         setSearchHistory([]);
         toast.error("Failed to fetch search history");
@@ -61,7 +62,7 @@ const HistoryPage = () => {
       </div>
     );
   }
-
+console.log(searchHistory);
   return (
     <div className="bg-black text-white min-h-screen">
       <Navbar />
@@ -99,7 +100,7 @@ const HistoryPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
