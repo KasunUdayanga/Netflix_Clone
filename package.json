@@ -5,10 +5,8 @@
   "main": "backend/server.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon backend/server.js",
-    "start": "NODE_ENV=production node backend/server.js",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
-    
-  
+    "start": "cross-env NODE_ENV=production node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +23,7 @@
     "mongoose": "^8.5.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.4"
   }
 }
