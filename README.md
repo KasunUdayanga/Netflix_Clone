@@ -22,8 +22,9 @@ This project is a clone of the popular streaming service Netflix. The web app is
 
 - **Database:**
   - MongoDB
-- **API**
-  -TMDB
+    
+- **API:**
+  - TMDB
 
 
 About This Project:
