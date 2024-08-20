@@ -13,8 +13,7 @@ This project is a clone of the popular streaming service Netflix. The web app is
 ## Tech Stack
 
 - **Frontend:**
-  - React
-  - Vite
+  - React+Vite
   - Tailwind CSS
 
 - **Backend:**
@@ -23,11 +22,9 @@ This project is a clone of the popular streaming service Netflix. The web app is
 
 - **Database:**
   - MongoDB
+- **API**
+  -TMDB
 
-
-- **Deployment:**
-  - Vercel (Frontend)
-  - Heroku (Backend)
 
 About This Project:
 
