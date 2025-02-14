@@ -9,7 +9,7 @@ This project is a clone of the popular streaming service Netflix. The web app is
 - Watch trailers and full videos
 - Responsive design for various devices
 - User profiles and watchlists
-- 
+
 ## Tech Stack
 
 - **Frontend:**
